@@ -16,3 +16,16 @@
 .pontuacao h2{
     margin: 0;
 }
+
+.pontuacao .gol{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    width: 90px;
+    font-size: 20pt;
+    font-weight: bolder;
+    color: black;
+    background-color: red;
+    border-radius: 50%;
+}
