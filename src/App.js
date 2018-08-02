@@ -23,16 +23,9 @@ class App extends Component {
   };
 
   incrementar = time => {
-    if (time === "1") {
-      this.setState({
-        placar1: this.state.placar1 + 1
-      });
-    }
-    if (time === "2") {
-      this.setState({
-        placar2: this.state.placar2 + 1
-      });
-    }
+    let novoState = {};
+    novoState[`placar${time}`] = this.state[`placar${time}`] + 1;
+    this.setState(novoState);
   };
 
   render() {
