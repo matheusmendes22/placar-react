@@ -1,58 +1,90 @@
-import React, { Component } from 'react';
-import './App.css';
-import Pontuacao from './Pontuacao';
+import React, { Component } from "react";
+import "./App.css";
+import Pontuacao from "./Pontuacao";
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      time1: '',
-      time2: '',
+      time1: this.updateInputValue,
+      time2: this.updateInputValue1,
       placar1: 0,
       placar2: 0
-    }
+    };
   }
 
   reiniciar = () => {
     this.setState({
-      time1: 'lalala',
-      time2: 'lelele',
+      time1: "Time da Casa ",
+      time2: "Time  Visitante ",
       placar1: 0,
       placar2: 0
     });
-  }
-  
+  };
+
   incrementar = time => {
-    if(time === "1"){
+    if (time === "1") {
       this.setState({
         placar1: this.state.placar1 + 1
       });
     }
-    if(time === "2"){
+    if (time === "2") {
       this.setState({
         placar2: this.state.placar2 + 1
       });
     }
-  }
+  };
 
   render() {
     return (
       <div>
-      <div className="placar">
-        <Pontuacao cliqueBotao={this.incrementar} nomeDoTime={this.state.time1} gols={this.state.placar1} numero="1"/>
-        X
-        <Pontuacao cliqueBotao={this.incrementar} nomeDoTime={this.state.time2} gols={this.state.placar2} numero="2" visitante="true"/>
-      </div>
-      <div className="controles">
-        <label>Time da casa</label>
-        <input type="text" placeholder="Digite o nome do time da casa" />
-        <label>Time visitante</label>
-        <input type="text" placeholder="Digite o nome do time visitante" />
-        <button onClick={this.reiniciar}>Reiniciar</button>
-      </div>
+        <div className="placar">
+          <Pontuacao
+            cliqueBotao={this.incrementar}
+            nomeDoTime={this.state.time1}
+            gols={this.state.placar1}
+            numero="1"
+          />
+          X
+          <Pontuacao
+            cliqueBotao={this.incrementar}
+            nomeDoTime={this.state.time2}
+            gols={this.state.placar2}
+            numero="2"
+            visitante="true"
+          />
+        </div>
+        <div className="controles">
+          <label>Time da casa</label>
+          <input
+            value={this.state.time1}
+            onChange={this.updateInputValue}
+            type="text"
+            placeholder="Digite o nome do time da casa"
+          />
+          <label>Time visitante</label>
+          <input
+            value={this.state.time2}
+            onChange={this.updateInputValue1}
+            type="text"
+            placeholder="Digite o nome do time visitante"
+          />
+          <button onClick={this.reiniciar}>Reiniciar</button>
+        </div>
       </div>
     );
   }
+
+  updateInputValue = evt => {
+    this.setState({
+      time1: evt.target.value
+    });
+  };
+  updateInputValue1 = evt => {
+    this.setState({
+      time2: evt.target.value
+    });
+  };
 }
 
 export default App;
